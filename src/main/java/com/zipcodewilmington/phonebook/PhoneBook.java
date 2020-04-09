@@ -18,17 +18,11 @@ public class PhoneBook {
     }
 
     public void add(String name, String phoneNumber) {
-        List<String> number = new ArrayList<>();
-        number.add(phoneNumber);
-        map.put(name, number);
+        map.put(name, new ArrayList<>(Collections.singletonList(phoneNumber)));
     }
 
     public void addAll(String name, String... phoneNumbers) {
-        List<String> numbers = new ArrayList<>();
-        for (String number : phoneNumbers) {
-            numbers.add(number);
-        }
-        map.put(name, numbers);
+        map.put(name, new ArrayList<>(Arrays.asList(phoneNumbers)));
     }
 
     public void remove(String name) {
@@ -58,11 +52,7 @@ public class PhoneBook {
     }
 
     public List<String> getAllContactNames() {
-        List<String> names = new ArrayList<>();
-        for(HashMap.Entry<String, List<String>> entry : map.entrySet()){
-            names.add(entry.getKey());
-        }
-        return names;
+        return new ArrayList<>(map.keySet());
     }
 
     public Map<String, List<String>> getMap() {
